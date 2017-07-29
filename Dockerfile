@@ -1,8 +1,9 @@
 FROM python:latest
 
-RUN mkdir /site
-WORKDIR /site/test
-ADD index.html /site/test
-CMD bash -c "cd /site; python3 -mhttp.server"
-EXPOSE 8000
+RUN mkdir -p /site
+WORKDIR /site
+ADD test /site/test
+RUN pip install web.py==0.40.dev0
+CMD bash -c "cd /site/test; python3 app.py 8080 argument"
+EXPOSE 8080
 
